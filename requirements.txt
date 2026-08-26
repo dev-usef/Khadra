@@ -2,7 +2,7 @@ pandas
 numpy
 seaborn
 matplotlib
-scikit-learn
 xgboost
 ydata-profiling
 streamlit
+scikit-learn==1.9.0
