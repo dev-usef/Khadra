@@ -1,3 +1,5 @@
+
+
 import pandas as pd
 import numpy as np
 
@@ -13,7 +15,8 @@ df.head()
 
 df.info()
 
-
+# Target: Yield
+# Keep Crop as a feature, but encode it because it is categorical.
 x = df.drop(columns=['Yield_tons_per_hectare'],axis=1)
 y = df['Yield_tons_per_hectare']
 
@@ -38,6 +41,7 @@ print('x_test:', x_test.shape)
 print('y_train:', y_train.shape)
 print('y_test:', y_test.shape)
 
+# Pipeline: encode Crop, keep numeric features, then train Linear Regression.
 model = Pipeline([
     ('preprocessor', preprocessor),
     ('regressor', LinearRegression())])
