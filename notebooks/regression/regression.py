@@ -108,7 +108,7 @@ print(f"Testing features shape: {X_test.shape}")
 # =========================
 
 # SVM
-svm_regressor = SVR(kernel="poly", degree=3, C=1.0)
+svm_regressor = SVR(kernel="linear", C=20.0)
 svm_regressor.fit(X_train, y_train)
 
 y_pred_svm = svm_regressor.predict(X_test)
