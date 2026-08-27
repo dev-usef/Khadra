@@ -6,3 +6,4 @@ xgboost
 ydata-profiling
 streamlit
 scikit-learn==1.9.0
+huggingface_hub
