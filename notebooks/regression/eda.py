@@ -169,7 +169,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 
 models = {
-    "SVM": SVR(kernel="poly", degree=3, C=1.0),
+    "SVM": SVR(kernel="linear", C=20.0),
     "Linear Regression": LinearRegression(),
     "Decision Tree": DecisionTreeRegressor(random_state=42),
     "KNN": KNeighborsRegressor(),
