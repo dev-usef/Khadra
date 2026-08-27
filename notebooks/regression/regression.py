@@ -2,7 +2,7 @@ import os
 import joblib
 import pandas as pd
 import numpy as np
-
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
@@ -102,6 +102,26 @@ X_train, X_test, y_train, y_test = train_test_split(
 print(f"Training features shape: {X_train.shape}")
 print(f"Testing features shape: {X_test.shape}")
 
+###
+k_values = range(1, 21)
+
+mse_scores = []
+
+for k in k_values:
+    knn_model = KNeighborsRegressor(n_neighbors=k)
+    knn_model.fit(X_train, y_train)
+    y_pred = knn_model.predict(X_test)
+    mse = mean_squared_error(y_test, y_pred)
+    mse_scores.append(mse)
+
+plt.figure(figsize=(10, 6))
+plt.plot(k_values, mse_scores, marker='o', linestyle='-', color='skyblue')
+plt.title('Elbow Method for Optimal K in KNN Regressor')
+plt.xlabel('Number of Neighbors (K)')
+plt.ylabel('Mean Squared Error (MSE)')
+plt.xticks(k_values)
+plt.grid(True, linestyle='--', alpha=0.7)
+plt.show()
 
 # =========================
 # 3. Train Models
@@ -141,7 +161,7 @@ r2_dt = r2_score(y_test, y_pred_dt)
 
 
 # KNN
-knn_regressor = KNeighborsRegressor()
+knn_regressor = KNeighborsRegressor(n_neighbors=3)
 knn_regressor.fit(X_train, y_train)
 
 y_pred_knn = knn_regressor.predict(X_test)
